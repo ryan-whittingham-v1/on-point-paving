@@ -1,0 +1,25 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    margin: 0px 30px 10px 30px;
+    transform: skew(-18deg);
+    padding: 10px 0px;
+}
+.header h2 {
+    text-align: center;
+    color: white;  
+    font-size: calc(14px + 1.75vw);
+    background: black;
+    padding: 10px 0px;
+    margin: 0px 0px 8px 0px;
+
+}
+
+.rectangle {
+    height: 8px;
+    background: black;
+
+}

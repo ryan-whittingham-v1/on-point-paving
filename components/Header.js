@@ -9,24 +9,21 @@ import logo from '../public/OPP-Logo-02-01-1024x89.png';
 export default function Header() {
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.logoContainer}>
-        <div className={styles.logo}>
-          <Link href="/">
-            <a>
-              <Image
-                alt="On Point Paving Logo"
-                src={logo}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="top"
-                priority
-              />
-            </a>
-          </Link>
-        </div>
-        <div className={styles.phone}>360.720.7606</div>
+      <div className={styles.logo}>
+        <Link href="/">
+          <a>
+            <Image
+              alt="On Point Paving Logo"
+              src={logo}
+              layout="responsive"
+              width={1024}
+              height={89}
+              priority
+            />
+          </a>
+        </Link>
+        <p>360.720.7606</p>
       </div>
-
       <div className={styles.button}>
         <MenuButton />
       </div>
