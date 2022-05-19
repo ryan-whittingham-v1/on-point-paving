@@ -20,7 +20,7 @@ export default function Home() {
             src={photo}
             layout="fill"
             objectFit="cover"
-            objectPosition="center"
+            objectPosition="50% 42%"
             priority
           />
         </div>

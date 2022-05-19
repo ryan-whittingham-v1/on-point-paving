@@ -29,7 +29,7 @@ export default function Review() {
           new driveway. It looks absolutely beautiful and the quality is top
           notch!”
         </p>
-        <p className={styles.author}>Bethany W - Battle Ground</p>
+        <p>Bethany W - Battle Ground</p>
       </div>
     </div>
   );

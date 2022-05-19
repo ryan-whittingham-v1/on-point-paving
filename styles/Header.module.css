@@ -1,23 +1,33 @@
 .mainContainer{
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
     background: #000000;
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
+    margin: auto;
+    position: sticky;
+top: y0px;
+z-index: 100;
+
+}
+
+.logoContainer{
+    flex: 1 80%;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .logo{
-    flex: 1 80%;
-    display: block;
-    color: white;
-    text-align: center;
+    flex: 1 100%;
 }
 
-.logo p {
-    font-size: calc(10px + 3vw);
-    margin: 0px;
-    padding: 5px 0px 0px 0px;
+.phone {
+    flex: 1 100%;
+    color: white;
+    font-size: calc(15px + 2vw);
     font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
 }
 
 
@@ -30,4 +40,21 @@
 
 @media all and (orientation: landscape) {
     
+    .logoContainer{
+        flex: 1 90%;
+        padding-bottom: 10px;
+    }
+    .logo {
+        flex: 1 50%;
+    }
+    .phone {
+        flex: 1 50%;
+        margin: 0px;
+        font-size: calc(10px + 2.5vw);
+        line-height: 90%;
+
+    }
+    .button{
+        flex: 1 10%;
+    }
   }

@@ -1,4 +1,6 @@
 .mainContainer {
+  flex: 1 100%;
+  margin: auto;
   background: #F7931D;
   display: flex;
   flex-direction: column;
@@ -8,9 +10,9 @@
 }
 
 .mainPhoto{
+  flex: 1 100%;
+  height: 150px;
   position: relative;
-  height: calc(80px + 25vw);
-  width: 100vw;
 }
 
 .tagline{
@@ -21,14 +23,14 @@
   border-top: solid white 5px;
   border-bottom: solid white 5px;
   font-weight: bold;
-  margin: 20px;
+  margin: 20px 30px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   text-align: center;
 }
 
 .tagline h1 {
-  margin: 5px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   padding: 0px;
   font-size: calc(10px + 5vw);
   font-style: italic;
@@ -40,14 +42,36 @@
   padding: 0px;
   font-size: calc(3px + 5vw);
   font-style: italic;
-
 }
 
 .mainText {
   color: white;
-  padding: 10px 20px;
+  padding: 0px 20px;
   font-size: calc(10px + 1.75vw);
   text-align: justify;
 }
 
 
+
+@media all and (orientation: landscape) {
+
+  .mainPhoto{
+    height: calc(150px + 9vw);
+  }
+  .tagline {
+    max-width: 70vw;
+    margin: 20px auto;
+  }
+  .tagline h1 {
+    font-size: calc(10px + 4vw);
+  }
+  
+  .tagline h2 {
+    font-size: calc(3px + 4vw);
+  }
+
+  .mainText {
+    padding: 0px 10vw;
+    font-size: calc(10px + 1.75vw);
+  }
+}
