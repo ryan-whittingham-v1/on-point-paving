@@ -1,7 +1,7 @@
 import styles from '../styles/Review.module.css';
 import Image from 'next/image';
 
-import photo from '../public/Oregon-City-3-scaled.jpg';
+import photo from '../public/driveway.jpg';
 import star from '../public/star.png';
 
 export default function Review() {
@@ -29,7 +29,9 @@ export default function Review() {
           new driveway. It looks absolutely beautiful and the quality is top
           notch!”
         </p>
-        <p>Bethany W - Battle Ground</p>
+      </div>
+      <div className={styles.author}>
+        <p>- Bethany W.</p>
       </div>
     </div>
   );

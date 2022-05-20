@@ -1,8 +1,7 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
-    width: 30px;   
-    height: 25px;
+    width: 2.75rem;   
 }
 
 .mainContainer button {
@@ -17,6 +16,6 @@
 
 .rectangle {
     background: #F7931D;
-    height: 5px;
-    margin: 3px;
+    height: .4rem;
+    margin: 0rem 0rem .4rem 0rem;
 }

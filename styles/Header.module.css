@@ -3,10 +3,10 @@
     flex-flow: row wrap;
     justify-content: space-between;
     background: #000000;
-    padding: 20px 20px 10px 20px;
+    padding: 1rem 1rem .5rem 1rem;
     margin: auto;
     position: sticky;
-top: y0px;
+    top: 0rem;
 z-index: 100;
 
 }
@@ -24,17 +24,16 @@ z-index: 100;
 .phone {
     flex: 1 100%;
     color: white;
-    font-size: calc(15px + 2vw);
+    font-size: calc(1rem + 2vw);
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;
+    margin-top: .5rem;
 }
 
 
 .button{
     flex: 1 20%;
     display:flex;
-    width: 50px;
     justify-content: flex-end;
 }
 
@@ -42,15 +41,15 @@ z-index: 100;
     
     .logoContainer{
         flex: 1 90%;
-        padding-bottom: 10px;
+        padding-bottom: .5rem;
     }
     .logo {
         flex: 1 50%;
     }
     .phone {
         flex: 1 50%;
-        margin: 0px;
-        font-size: calc(10px + 2.5vw);
+        margin: 0rem;
+        font-size: calc(.5rem + 2.5vw);
         line-height: 90%;
 
     }
