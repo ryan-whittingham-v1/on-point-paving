@@ -1,0 +1,70 @@
+.mainContainer {
+    position: fixed;
+    top: 0rem;
+    left: 0rem;
+    z-index: 100;
+    background: black;
+    color: white;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContainer button {
+    background: none;
+    background: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.closeMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: .5rem;    
+}
+
+.closeMenu button {
+    color: #F7931D;
+    font-size: 3.25rem;
+    font-weight: bold;
+    margin-top: -.75rem;
+    margin-right: .3rem;
+}
+
+.optionsContainer {
+    height: 75vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option {
+    width: 75%;
+    border-top: solid .35rem #F7931D;
+    border-bottom: solid .35rem #F7931D;
+    padding: .25rem;
+    margin: 2rem 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.option button {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+
+}
+
+@media all and (orientation: landscape) {
+.option {
+    margin-top: .5rem;
+    width: 50%;
+}
+    
+  }
+  
