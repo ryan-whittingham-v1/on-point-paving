@@ -13,7 +13,6 @@ export default function Review() {
           src={photo}
           layout="fill"
           objectFit="cover"
-          objectPosition="center"
         />
       </div>
       <div className={styles.stars}>

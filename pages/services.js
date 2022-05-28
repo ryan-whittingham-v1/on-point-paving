@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import Service from '../components/Service.js';
+import styles from '../styles/Services.module.css';
 
-import photo from '../public/Oregon-City-3-scaled.jpg';
-import Reviews from '../components/Reviews';
+import driveway from '../public/driveway.jpg';
+import parkingLot from '../public/parkingLot.jpg';
+import road from '../public/road.jpg';
 
 export default function Services() {
   return (
@@ -14,19 +15,8 @@ export default function Services() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className={styles.mainPhoto}>
-          <Image
-            alt="Freshly paved road with beautiful landscaping"
-            src={photo}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="50% 42%"
-            priority
-          />
-        </div>
-        <div className={styles.tagline}>
-          <h2>SERVICES</h2>
-          <h1>ELITE PAVING SERVICE</h1>
+        <div className={styles.headingContainer}>
+          <h1>SERVICES</h1>
         </div>
         <p className={styles.mainText}>
           On Point Paving is proud to offer high quality paving options for both
@@ -35,8 +25,26 @@ export default function Services() {
           committed to providing exceptional paving solutions that will stand
           the test of time.
         </p>
+        <Service
+          serviceName={'DRIVEWAY'}
+          photo={driveway}
+          description={
+            'This section will cover the specifics for driveway paving.'
+          }
+        />
+        <Service
+          serviceName={'PARKING LOT'}
+          photo={parkingLot}
+          description={
+            'This section will cover the specifics for parking lot paving.'
+          }
+        />
+        <Service
+          serviceName={'ROAD'}
+          photo={road}
+          description={'This section will cover the specifics for road paving.'}
+        />
       </main>
-      <Reviews />
     </div>
   );
 }

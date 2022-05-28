@@ -28,7 +28,7 @@
 }
 
 .closeMenu button {
-    color: #F7931D;
+    color: #f18305;
     font-size: 3.25rem;
     font-weight: bold;
     margin-top: -.75rem;
@@ -45,8 +45,8 @@
 
 .option {
     width: 75%;
-    border-top: solid .35rem #F7931D;
-    border-bottom: solid .35rem #F7931D;
+    border-top: solid .35rem #f18305;
+    border-bottom: solid .35rem #f18305;
     padding: .25rem;
     margin: 2rem 2.5rem;
     display: flex;
