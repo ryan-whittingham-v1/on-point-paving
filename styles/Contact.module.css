@@ -1,0 +1,62 @@
+.mainContainer {
+    flex: 1 100%;
+    margin: auto;
+    background: #f18305;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .headingContainer{
+    flex: 1 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-weight: bold;
+    margin: .5rem 1.5rem;
+    text-shadow: 0rem .3rem .3rem rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(0px .3rem .3rem rgba(0, 0, 0, 0.25));
+    text-align: center;
+  }
+  
+  .headingContainer h1 {
+      margin: 0;
+    padding: 0;
+    font-size: calc(1.25rem + 5vw);
+    font-style: italic;
+  
+  }
+  
+  .mainText {
+    color: white;
+    padding: 0;
+    margin: 0rem 1.5rem;
+    font-weight: 400;
+    font-size: calc(.8rem + 1.75vw);
+    text-align: justify;
+  }
+
+  .formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .formContainer label {
+    color: white;
+  }
+
+  .honeypot {
+    display: none;
+  }
+  
+  
+  @media all and (orientation: landscape) {
+    .mainText {
+        margin: 0rem 5rem;
+    }
+        
+  }
+  

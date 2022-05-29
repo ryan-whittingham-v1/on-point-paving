@@ -42,7 +42,7 @@ export default function Menu(props) {
           <button onClick={() => handleRedirect('/')}>ABOUT US</button>
         </div>
         <div className={styles.option}>
-          <button onClick={() => handleRedirect('/')}>CONTACT US</button>
+          <button onClick={() => handleRedirect('/contact')}>CONTACT US</button>
         </div>
       </div>
     </div>
