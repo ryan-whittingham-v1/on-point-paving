@@ -5,7 +5,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
   
   .headingContainer{
@@ -38,24 +37,89 @@
   }
 
   .formContainer{
+    flex-basis: 0;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    padding: 0rem 1.5rem;
   }
 
-  .formContainer label {
+  .questionContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem auto;
+    justify-content: center;
+  }
+
+  .labelContainer{
+    flex: 1 100%;
     color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .inputContainer {
+    flex: 1 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .inputContainer input {
+    border-radius: .3rem;
+    border: none;
+    font-size: 1.75rem;
+    width: calc(2.5rem + 76vw);
+    max-width: 30rem;
+  }
+
+  .inputContainer textarea {
+    width: 100%;
+    font-size: 1.5rem;
   }
 
   .honeypot {
     display: none;
+  }
+
+  .submitButtonContainer {
+    flex: 1 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem auto;
+    max-width: 28rem;
+
+  }
+
+  .submitButtonContainer button {
+    background: black;
+	color: white;
+	border: none;
+	padding: .4rem;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    border-radius: .4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    filter: drop-shadow(.2rem .2rem 0rem #ffffff);
+  }
+
+  .submitButtonContainer button:active {
+    filter: none;
+    transform: translate(.2rem, .2rem);
   }
   
   
   @media all and (orientation: landscape) {
     .mainText {
         margin: 0rem 5rem;
+    }
+
+    .inputContainer input {
+      
+    }
+
+    .formContainer {
     }
         
   }

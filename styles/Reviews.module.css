@@ -4,17 +4,19 @@
 }
 
 .header {
-    margin: 0rem 2rem 1.5rem 2rem;
+    flex: 1 100%;
     transform: skew(-18deg);
     padding: 0rem;
+    margin: 0rem 2rem 1.5rem 2rem;
 }
+
 .header h2 {
     text-align: center;
     color: #f18305;
-    font-size: calc(1rem + 1.75vw);
-    background: white;
-    padding: .5rem;
+    font-size: calc(1rem + 1.2vw);
+    padding: .5rem .5rem;
     margin: .4rem 0rem .4rem 0rem;
+    background: white;
 
 }
 
@@ -23,3 +25,9 @@
     background: white;
 
 }
+
+@media all and (orientation: landscape) {
+    .header {
+        margin: 0rem 5rem 1.5rem 5rem;
+    }
+  }

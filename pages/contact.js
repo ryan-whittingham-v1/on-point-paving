@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
+import Notification from '../components/Notification';
 
 import styles from '../styles/Contact.module.css';
 
@@ -12,14 +13,65 @@ export default function Contact() {
   });
 
   const [honeypot, setHoneypot] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    //hidden input that only bots would be able to see and use
+
+    //bot prevention
     if (honeypot) {
-      console.log('bot detected');
       return;
     }
+
+    // name vailidation
+    if (!formState.name) {
+      setErrorMessage('Missing name.');
+      return;
+    }
+
+    if (!formState.email) {
+      setErrorMessage('Missing email.');
+      return;
+    }
+
+    if (!formState.phone) {
+      setErrorMessage('Missing phone.');
+      return;
+    }
+
+    if (!formState.message) {
+      setErrorMessage('Missing message.');
+      return;
+    }
+
+    //name validation
+    const nameRegex = /^[a-zA-Z ]{2,30}$/;
+    if (!nameRegex.test(formState.name)) {
+      setErrorMessage('Invalid name format.');
+      return;
+    }
+    // email validation
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(formState.email)) {
+      setErrorMessage('Invalid email format.');
+      return;
+    }
+
+    //phone validation
+    const phoneRegex = /[0-9]{10}/;
+    if (!phoneRegex.test(formState.phone)) {
+      setErrorMessage('Invalid phone format');
+      return;
+    }
+
+    //text area validation
+    const textRegex = /[^a-zA-Z0-9 .,$?!@-]/g;
+    if (!textRegex.test(formState.message)) {
+      setErrorMessage('Invalid message format. Special symbols allowed: $?!@');
+      return;
+    }
+
     const url =
       'https://script.google.com/macros/s/AKfycbyM9TlvuuHiC3-mg9WiVUuo4DzPzps6hCkNC1_3P5zOfGzSjQg76IB1E4qH3GNofGRS/exec';
     const data = formState;
@@ -30,6 +82,7 @@ export default function Contact() {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log('Form submitted');
+        setSuccess(true);
       }
     };
     // url encode form data for sending as post data
@@ -59,75 +112,87 @@ export default function Contact() {
           the best solution for your project.
         </p>
         <div className={styles.formContainer}>
-          <form className="gform" onSubmit={handleSubmit}>
-            <div className={styles.inputContainer}>
-              <label>
-                NAME
-                <input
-                  type="text"
-                  name="name"
-                  value={formState.name}
-                  onChange={(e) =>
-                    setFormState({ ...formState, name: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={styles.inputContainer}>
-              <label>
-                PHONE
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formState.phone}
-                  onChange={(e) =>
-                    setFormState({ ...formState, phone: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={styles.inputContainer}>
-              <label>
-                EMAIL
-                <input
-                  type="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={(e) =>
-                    setFormState({ ...formState, email: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={styles.inputContainer}>
-              <label>
-                MESSAGE
-                <br />
-                <textarea
-                  name="message"
-                  rows="10"
-                  cols="30"
-                  value={formState.message}
-                  onChange={(e) =>
-                    setFormState({ ...formState, message: e.target.value })
-                  }
-                />
-              </label>
-            </div>
-            <div className={styles.honeypot}>
-              <label>
-                HONEYPOT
-                <br />
-                <input
-                  name="honeypot"
-                  type="text"
-                  value={honeypot}
-                  onChange={(e) => setHoneypot(e.target.value)}
-                />
-              </label>
-            </div>
-            <button type="submit">SUBMIT</button>
-          </form>
+          {!success && (
+            <form onSubmit={handleSubmit}>
+              <div className={styles.questionContainer}>
+                <label>
+                  <div className={styles.labelContainer}>NAME</div>
+                  <div className={styles.inputContainer}>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formState.name}
+                      onChange={(e) =>
+                        setFormState({ ...formState, name: e.target.value })
+                      }
+                    />
+                  </div>
+                </label>
+              </div>
+              <div className={styles.questionContainer}>
+                <label>
+                  <div className={styles.labelContainer}>PHONE</div>
+                  <div className={styles.inputContainer}>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formState.phone}
+                      onChange={(e) =>
+                        setFormState({ ...formState, phone: e.target.value })
+                      }
+                    />
+                  </div>
+                </label>
+              </div>
+              <div className={styles.questionContainer}>
+                <label>
+                  <div className={styles.labelContainer}>EMAIL</div>
+                  <div className={styles.inputContainer}>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formState.email}
+                      onChange={(e) =>
+                        setFormState({ ...formState, email: e.target.value })
+                      }
+                    />
+                  </div>
+                </label>
+              </div>
+              <div className={styles.questionContainer}>
+                <label>
+                  <div className={styles.labelContainer}>MESSAGE</div>
+                  <div className={styles.inputContainer}>
+                    <textarea
+                      name="message"
+                      value={formState.message}
+                      rows="10"
+                      cols="34"
+                      onChange={(e) =>
+                        setFormState({ ...formState, message: e.target.value })
+                      }
+                    />
+                  </div>
+                </label>
+              </div>
+              <div className={styles.honeypot}>
+                <label>
+                  HONEYPOT
+                  <br />
+                  <input
+                    name="honeypot"
+                    type="text"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </label>
+              </div>
+              {errorMessage && <Notification>{errorMessage}</Notification>}
+              <div className={styles.submitButtonContainer}>
+                <button type="submit">SUBMIT</button>
+              </div>
+            </form>
+          )}
         </div>
       </main>
     </div>

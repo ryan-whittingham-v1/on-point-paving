@@ -31,7 +31,7 @@ export default function Menu(props) {
       <div className={styles.closeMenu}>
         <button onClick={() => props.closeMenu()}>x</button>
       </div>
-      <div className={styles.optionsContainer}>
+      <nav className={styles.optionsContainer}>
         <div className={styles.option}>
           <button onClick={() => handleRedirect('/')}>HOME</button>
         </div>
@@ -44,7 +44,7 @@ export default function Menu(props) {
         <div className={styles.option}>
           <button onClick={() => handleRedirect('/contact')}>CONTACT US</button>
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

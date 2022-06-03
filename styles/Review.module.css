@@ -1,29 +1,31 @@
 .mainContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-flow: row wrap;
+    margin: 0rem;
+    justify-content: center;
 }
 
 .photo{
-  position: relative;
-  display: flex;
-  justify-content: center;
+  flex: 1 100%;
   box-shadow: .5rem .5rem 1rem 0rem rgb(37, 37, 37);
-  height: 40vw;
-  width: 60vw;
+  margin: 0rem 4rem 1rem 4rem;
+  position: relative;
+  min-height: 12rem;
   }
 
+
   .quote {
+    flex: 1 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0rem 10vw;
+      justify-content: center;
   }
 
   .stars {
     display: flex;
     width: 15rem;
-    margin: 2rem 0rem 0rem 0rem;
+    margin: 1rem 0rem;
     flex-direction: row;
     justify-content: space-between;
  }
@@ -33,26 +35,49 @@
       text-align: center;
       font-size: calc(1rem + 2vw);
       padding: 0rem;
-      margin: .75rem 0rem;
+      margin: 0rem 2rem .5rem 2rem;
       font-style: italic;
       text-shadow: 0rem .3rem .3rem rgba(0, 0, 0, 0.25);
+    }
+
+    .author {
+      flex: 1 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
   .author p {
       color: white;
       font-size: calc(1rem + 2vw);
       padding: 0rem;
-      margin: .25rem 0rem;
+      margin: 0rem;
       font-style: italic;
       text-shadow: 0rem .3rem .3rem rgba(0, 0, 0, 0.25);
   }
 
   @media all and (orientation: landscape) {
+    .mainContainer {
+      margin: 0rem 4rem 1.5rem 4rem;
+    }
     .photo {
-      height: 30vw;
-  width: 50vw;
+      flex: 1 20%;
+      margin: 0rem;;
     }
-    .stars {
-        width: 17rem;
+
+    .quote {
+      flex: 1 60%;
+      padding-left: 2rem;
     }
+    
+    .quote p {
+    text-align: left;
+    font-size: calc(1rem + 1vw);
+    
+  }
+
+  
+  .author p {
+    font-size: calc(1rem + 1vw);
+}
   }

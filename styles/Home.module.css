@@ -59,19 +59,19 @@
     height: calc(9rem + 9vw);
   }
   .tagline {
-    max-width: 70vw;
-    margin: 2rem auto;
+    margin: 2rem 5rem;
   }
   .tagline h1 {
-    font-size: calc(1.25rem + 4vw);
+    font-size: calc(1.25rem + 3vw);
   }
   
   .tagline h2 {
-    font-size: calc(.25rem + 4vw);
+    font-size: calc(.25rem + 3vw);
   }
 
   .mainText {
-    padding: 0rem 10vw;
-    font-size: calc(1rem + 1.75vw);
+    font-size: calc(1rem + 1vw);
+    padding: 0rem 5rem;
+
   }
 }

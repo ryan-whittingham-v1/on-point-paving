@@ -15,22 +15,22 @@ export default function Review() {
           objectFit="cover"
         />
       </div>
-      <div className={styles.stars}>
-        <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
-        <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
-        <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
-        <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
-        <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
-      </div>
       <div className={styles.quote}>
         <p>
           “On Point Paving was prompt to respond and did a fantastic job on our
           new driveway. It looks absolutely beautiful and the quality is top
           notch!”
         </p>
-      </div>
-      <div className={styles.author}>
-        <p>- Bethany W.</p>
+        <div className={styles.stars}>
+          <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
+          <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
+          <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
+          <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
+          <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
+        </div>
+        <div className={styles.author}>
+          <p>- Bethany W.</p>
+        </div>
       </div>
     </div>
   );
