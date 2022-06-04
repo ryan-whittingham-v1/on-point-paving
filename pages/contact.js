@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
 import Notification from '../components/Notification';
 
 import styles from '../styles/Contact.module.css';
@@ -14,7 +15,76 @@ export default function Contact() {
 
   const [honeypot, setHoneypot] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  function formatPhoneNumber(value) {
+    // if input value is falsy eg if the user deletes the input, then just return
+    if (!value) return value;
+
+    // clean the input for any non-digit values.
+    const phoneNumber = value.replace(/[^\d]/g, '');
+
+    // phoneNumberLength is used to know when to apply our formatting for the phone number
+    const phoneNumberLength = phoneNumber.length;
+
+    // we need to return the value with no formatting if its less then four digits
+    // this is to avoid weird behavior that occurs if you  format the area code to early
+
+    if (phoneNumberLength < 4) return phoneNumber;
+
+    // if phoneNumberLength is greater than 4 and less the 7 we start to return
+    // the formatted number
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+
+    // finally, if the phoneNumberLength is greater then seven, we add the last
+    // bit of formatting and return it.
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`;
+  }
+
+  function makeRequest() {
+    setLoading(true);
+    const url =
+      'https://script.google.com/macros/s/AKfycbyM9TlvuuHiC3-mg9WiVUuo4DzPzps6hCkNC1_3P5zOfGzSjQg76IB1E4qH3GNofGRS/exec';
+    const data = formState;
+
+    return new Promise(function (resolve, reject) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          //success
+          resolve(xhr.response);
+          setLoading(false);
+          setSuccess(true);
+        } else {
+          reject({
+            status: this.status,
+            statusText: xhr.statusText,
+          });
+        }
+      };
+      xhr.onerror = function () {
+        reject({
+          status: this.status,
+          statusText: xhr.statusText,
+        });
+      };
+      // url encode form data for sending as post data
+      var encoded = Object.keys(data)
+        .map(function (k) {
+          return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+        })
+        .join('&');
+      xhr.send(encoded);
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,72 +96,46 @@ export default function Contact() {
 
     // name vailidation
     if (!formState.name) {
-      setErrorMessage('Missing name.');
-      return;
-    }
-
-    if (!formState.email) {
-      setErrorMessage('Missing email.');
+      setErrorMessage('MISSING NAME');
       return;
     }
 
     if (!formState.phone) {
-      setErrorMessage('Missing phone.');
+      setErrorMessage('MISSING PHONE');
+      return;
+    }
+
+    if (!formState.email) {
+      setErrorMessage('MISSING EMAIL');
       return;
     }
 
     if (!formState.message) {
-      setErrorMessage('Missing message.');
+      setErrorMessage('MISSING MESSAGE');
       return;
     }
 
     //name validation
     const nameRegex = /^[a-zA-Z ]{2,30}$/;
     if (!nameRegex.test(formState.name)) {
-      setErrorMessage('Invalid name format.');
+      setErrorMessage('INVALID NAME FORMAT');
       return;
     }
     // email validation
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(formState.email)) {
-      setErrorMessage('Invalid email format.');
-      return;
-    }
-
-    //phone validation
-    const phoneRegex = /[0-9]{10}/;
-    if (!phoneRegex.test(formState.phone)) {
-      setErrorMessage('Invalid phone format');
+      setErrorMessage('INVALID EMAIL FORMAT');
       return;
     }
 
     //text area validation
-    const textRegex = /[^a-zA-Z0-9 .,$?!@-]/g;
-    if (!textRegex.test(formState.message)) {
-      setErrorMessage('Invalid message format. Special symbols allowed: $?!@');
+    const textRegex = /[^a-zA-Z0-9 .,?!'"-]/g;
+    if (textRegex.test(formState.message)) {
+      setErrorMessage('INVALID MESSAGE FORMAT: BASIC CHARACTERS ONLY');
       return;
     }
 
-    const url =
-      'https://script.google.com/macros/s/AKfycbyM9TlvuuHiC3-mg9WiVUuo4DzPzps6hCkNC1_3P5zOfGzSjQg76IB1E4qH3GNofGRS/exec';
-    const data = formState;
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    // xhr.withCredentials = true;
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log('Form submitted');
-        setSuccess(true);
-      }
-    };
-    // url encode form data for sending as post data
-    var encoded = Object.keys(data)
-      .map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
-      })
-      .join('&');
-    xhr.send(encoded);
+    makeRequest();
   }
 
   return (
@@ -105,94 +149,108 @@ export default function Contact() {
         <div className={styles.headingContainer}>
           <h1>CONTACT US</h1>
         </div>
-        <p className={styles.mainText}>
-          On Point Paving is standing by to assist with all your paving needs.
-          Give us a call at 360-720-7606 or contact us below to receive a prompt
-          quote or anwer to any questions. We look forward to helping you find
-          the best solution for your project.
-        </p>
-        <div className={styles.formContainer}>
-          {!success && (
-            <form onSubmit={handleSubmit}>
-              <div className={styles.questionContainer}>
-                <label>
-                  <div className={styles.labelContainer}>NAME</div>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formState.name}
-                      onChange={(e) =>
-                        setFormState({ ...formState, name: e.target.value })
-                      }
-                    />
+        <div className={styles.body}>
+          <p className={styles.mainText}>
+            Have questions or need a quote? Give us a call at 360-720-7606 or
+            contact us below to receive a prompt quote or anwer to any
+            questions. We look forward to helping you find the best solution for
+            your project.
+          </p>
+          <div className={styles.formContainer}>
+            {!success && (
+              <form onSubmit={handleSubmit}>
+                <fieldset disabled={loading} aria-busy={loading}>
+                  <div className={styles.questionContainer}>
+                    <label>
+                      <div className={styles.labelContainer}>NAME</div>
+                      <div className={styles.inputContainer}>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formState.name}
+                          onChange={(e) =>
+                            setFormState({ ...formState, name: e.target.value })
+                          }
+                        />
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className={styles.questionContainer}>
-                <label>
-                  <div className={styles.labelContainer}>PHONE</div>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formState.phone}
-                      onChange={(e) =>
-                        setFormState({ ...formState, phone: e.target.value })
-                      }
-                    />
+                  <div className={styles.questionContainer}>
+                    <label>
+                      <div className={styles.labelContainer}>PHONE</div>
+                      <div className={styles.inputContainer}>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formState.phone}
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              phone: formatPhoneNumber(e.target.value),
+                            })
+                          }
+                        />
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className={styles.questionContainer}>
-                <label>
-                  <div className={styles.labelContainer}>EMAIL</div>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formState.email}
-                      onChange={(e) =>
-                        setFormState({ ...formState, email: e.target.value })
-                      }
-                    />
+                  <div className={styles.questionContainer}>
+                    <label>
+                      <div className={styles.labelContainer}>EMAIL</div>
+                      <div className={styles.inputContainer}>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formState.email}
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              email: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className={styles.questionContainer}>
-                <label>
-                  <div className={styles.labelContainer}>MESSAGE</div>
-                  <div className={styles.inputContainer}>
-                    <textarea
-                      name="message"
-                      value={formState.message}
-                      rows="10"
-                      cols="34"
-                      onChange={(e) =>
-                        setFormState({ ...formState, message: e.target.value })
-                      }
-                    />
+                  <div className={styles.questionContainer}>
+                    <label>
+                      <div className={styles.labelContainer}>MESSAGE</div>
+                      <div className={styles.inputContainer}>
+                        <textarea
+                          name="message"
+                          value={formState.message}
+                          rows="8"
+                          cols="50"
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              message: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div className={styles.honeypot}>
-                <label>
-                  HONEYPOT
-                  <br />
-                  <input
-                    name="honeypot"
-                    type="text"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                  />
-                </label>
-              </div>
-              {errorMessage && <Notification>{errorMessage}</Notification>}
-              <div className={styles.submitButtonContainer}>
-                <button type="submit">SUBMIT</button>
-              </div>
-            </form>
-          )}
+                  <div className={styles.honeypot}>
+                    <label>
+                      HONEYPOT
+                      <br />
+                      <input
+                        name="honeypot"
+                        type="text"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </label>
+                  </div>
+                  {errorMessage && <Notification>{errorMessage}</Notification>}
+                  <div className={styles.submitButtonContainer}>
+                    <button type="submit">SUBMIT</button>
+                  </div>
+                </fieldset>
+              </form>
+            )}
+            {success && <p>Thank you. We will respond to you shortly.</p>}
+          </div>
         </div>
       </main>
     </div>

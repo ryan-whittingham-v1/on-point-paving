@@ -47,7 +47,7 @@
   color: white;
   padding: 0rem 1.5rem;
   font-weight: 400;
-  font-size: calc(.8rem + 1.75vw);
+  font-size: calc(1rem + 1vw);
   text-align: justify;
 }
 
@@ -70,7 +70,6 @@
   }
 
   .mainText {
-    font-size: calc(1rem + 1vw);
     padding: 0rem 5rem;
 
   }

@@ -47,7 +47,7 @@
 .textContainer p {
     color: white;
     font-weight: 400;
-    font-size: calc(.8rem + 1.75vw);
+    font-size: calc(1rem + 1vw);
     margin: 0;
     padding: 0;
 }
@@ -64,8 +64,8 @@
     }
 
     .imageContainer {
-        min-height: 20vw;
-        max-width: 30vw;
+        min-height: 15vw;
+        max-width: 25vw;
     }
      
     .textContainer {

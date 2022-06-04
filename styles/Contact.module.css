@@ -1,10 +1,8 @@
 .mainContainer {
-    flex: 1 100%;
-    margin: auto;
     background: #f18305;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-height: 84vh;
   }
   
   .headingContainer{
@@ -22,26 +20,39 @@
   .headingContainer h1 {
       margin: 0;
     padding: 0;
-    font-size: calc(1.25rem + 5vw);
+    font-size: calc(1.5rem + 2vw);
     font-style: italic;
   
   }
+
+  .body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
   
   .mainText {
+    flex: 1 100%;
     color: white;
     padding: 0;
     margin: 0rem 1.5rem;
     font-weight: 400;
-    font-size: calc(.8rem + 1.75vw);
+    font-size: calc(1rem + 1vw);
     text-align: justify;
   }
 
   .formContainer{
-    flex-basis: 0;
-    margin: auto;
+    flex: 1 100%;
+    margin: 0rem auto;
     display: flex;
     flex-direction: column;
-    padding: 0rem 1.5rem;
+    padding: 0rem 3rem;
+  }
+
+  .formContainer p {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
   }
 
   .questionContainer{
@@ -67,14 +78,13 @@
   .inputContainer input {
     border-radius: .3rem;
     border: none;
-    font-size: 1.75rem;
-    width: calc(2.5rem + 76vw);
-    max-width: 30rem;
+    width: calc(15vw + 20vh);
+    padding: .5rem;
   }
 
   .inputContainer textarea {
+    padding: .5rem;
     width: 100%;
-    font-size: 1.5rem;
   }
 
   .honeypot {
@@ -108,19 +118,71 @@
     filter: none;
     transform: translate(.2rem, .2rem);
   }
-  
+
+  @keyframes loading {
+    
+  from {
+    background-position: 0 0;
+    /* rotate: 0; */
+  }
+  to {
+    background-position: 100% 100%;
+    /* rotate: 360deg; */
+  }
+}
+
+.formContainer fieldset {
+  border: 0;
+    padding: 0;
+}
+
+.formContainer [disabled] {
+  opacity: 0.5;
+}
+
+.formContainer [aria-busy='true']::before {
+    height: 5px;
+      content: '';
+      display: block;
+    background-size: 50% auto;
+    animation: loading .75s linear infinite;
+    background-image: linear-gradient(
+        to right,
+        #ffffff 0%,
+        #002fff 50%,
+        #ffffff 100%
+      );
+  }  
+
+  .formContainer [aria-busy='true']::after {
+    height: 5px;
+      content: '';
+      display: block;
+    background-size: 50% auto;
+    animation: loading .75s linear infinite;
+    background-image: linear-gradient(
+        to right,
+        #ffffff 0%,
+        #002fff 50%,
+        #ffffff 100%
+      );
+  }  
   
   @media all and (orientation: landscape) {
     .mainText {
-        margin: 0rem 5rem;
+        flex: 1 40%;
+        margin: 1rem auto;
+        padding: 0rem 0rem 0rem 3rem;
     }
-
+    .formContainer {
+      flex: 1 40%;
+    }
     .inputContainer input {
       
+      width: calc(11vw + 40vh);
+      
     }
-
-    .formContainer {
-    }
+    
         
   }
   

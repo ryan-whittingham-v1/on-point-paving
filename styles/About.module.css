@@ -1,12 +1,18 @@
 .mainContainer {
-    flex: 1 100%;
-    margin: auto;
     background: #f18305;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     justify-content: center;
-    align-items: center;
+    min-height: 82vh;
   }
+
+  .photo{
+    flex: 1 100%;
+    box-shadow: .5rem .5rem 1rem 0rem rgb(37, 37, 37);
+    margin: 0rem;
+    position: relative;
+    min-height: 12rem;
+    }
   
   .headingContainer{
     flex: 1 100%;
@@ -32,7 +38,7 @@
     flex: 1 100%;
     color: white;
     padding: 0;
-    margin: 0rem 1.5rem;
+    margin: 0rem;
     font-weight: 400;
   font-size: calc(1rem + 1vw);
     text-align: justify;
@@ -40,8 +46,13 @@
   
   
   @media all and (orientation: landscape) {
+
+    .photo {
+      flex: 1 40%;
+    }
     .mainText {
-        margin: 0rem 5rem;
+      flex: 1 40%;
+      
     }
         
   }
