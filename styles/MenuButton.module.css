@@ -15,7 +15,7 @@
 }
 
 .rectangle {
-    background: #f18305;
+    background: var(--main-bg-color);;
     height: .4rem;
     margin: 0rem 0rem .4rem 0rem;
 }

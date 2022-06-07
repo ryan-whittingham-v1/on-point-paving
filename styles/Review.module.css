@@ -61,13 +61,14 @@
       margin: 0rem 4rem 1.5rem 4rem;
     }
     .photo {
-      flex: 1 20%;
-      margin: 0rem;;
+      flex: 1 40%;
+      margin: 0rem;
+      max-height: 30vh;
+      max-width: 25vw;
     }
 
     .quote {
       flex: 1 60%;
-      padding-left: 2rem;
     }
     
     .quote p {

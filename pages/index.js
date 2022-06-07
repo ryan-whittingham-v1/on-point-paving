@@ -1,11 +1,13 @@
+import { fetchAsset } from '../lib/contentful';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-import photo from '../public/Oregon-City-3-scaled.jpg';
 import Reviews from '../components/Reviews';
 
-export default function Home() {
+export default function Home(props) {
+  const banner = `https:${props.homeBanner.fields.file.url}`;
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -17,7 +19,7 @@ export default function Home() {
         <div className={styles.mainPhoto}>
           <Image
             alt="Freshly paved road with beautiful landscaping"
-            src={photo}
+            src={banner}
             layout="fill"
             objectFit="cover"
             objectPosition="50% 42%"
@@ -39,4 +41,14 @@ export default function Home() {
       <Reviews />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const homeBanner = await fetchAsset('dYQ5GCQ6fMSwuNPEfppq4');
+
+  return {
+    props: {
+      homeBanner,
+    },
+  };
 }

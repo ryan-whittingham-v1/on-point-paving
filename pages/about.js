@@ -16,21 +16,23 @@ export default function About() {
         <div className={styles.headingContainer}>
           <h1>ABOUT US</h1>
         </div>
-        <div className={styles.photo}>
-          <Image
-            alt="Freshly paved road with beautiful landscaping"
-            src={photo}
-            layout="fill"
-            objectFit="cover"
-          />
+        <div className={styles.body}>
+          <div className={styles.photo}>
+            <Image
+              alt="Freshly paved road with beautiful landscaping"
+              src={photo}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <p className={styles.mainText}>
+            On Point Paving is proud to offer high quality paving options for
+            both commerical and residential projects. Our trusted experience and
+            expertise will get the job done right at an affordable price. We are
+            committed to providing exceptional paving solutions that will stand
+            the test of time.
+          </p>
         </div>
-        <p className={styles.mainText}>
-          On Point Paving is proud to offer high quality paving options for both
-          commerical and residential projects. Our trusted experience and
-          expertise will get the job done right at an affordable price. We are
-          committed to providing exceptional paving solutions that will stand
-          the test of time.
-        </p>
       </main>
     </div>
   );

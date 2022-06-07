@@ -219,7 +219,7 @@ export default function Contact() {
                           name="message"
                           value={formState.message}
                           rows="8"
-                          cols="50"
+                          cols="40"
                           onChange={(e) =>
                             setFormState({
                               ...formState,

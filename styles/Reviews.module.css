@@ -12,7 +12,7 @@
 
 .header h2 {
     text-align: center;
-    color: #f18305;
+    color: var(--main-bg-color);
     font-size: calc(1rem + 1.2vw);
     padding: .5rem .5rem;
     margin: .4rem 0rem .4rem 0rem;

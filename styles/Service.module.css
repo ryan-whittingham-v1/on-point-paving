@@ -11,7 +11,7 @@
 
 .headingContainer h2 {
     text-align: center;
-    color: #f18305;
+    color: var(--main-bg-color);
     font-size: calc(1rem + 1.75vw);
     background: white;
     padding: .35rem;

@@ -1,7 +1,7 @@
 .mainContainer {
   flex: 1 100%;
   margin: auto;
-  background: #f18305;
+  background: none;
   display: flex;
   flex-direction: column;
   justify-content: center;

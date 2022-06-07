@@ -1,17 +1,24 @@
 .mainContainer {
-    background: #f18305;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 82vh;
+    display: flex;
+  }
+
+  .body {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
-    min-height: 82vh;
   }
 
   .photo{
     flex: 1 100%;
     box-shadow: .5rem .5rem 1rem 0rem rgb(37, 37, 37);
-    margin: 0rem;
+    margin: 0rem 2rem;
     position: relative;
     min-height: 12rem;
+    
     }
   
   .headingContainer{
@@ -20,7 +27,7 @@
     flex-direction: column;
     color: white;
     font-weight: bold;
-    margin: .5rem 1.5rem;
+    margin: 1rem 2rem 1rem 2rem;
     text-shadow: 0rem .3rem .3rem rgba(0, 0, 0, 0.25);
     filter: drop-shadow(0px .3rem .3rem rgba(0, 0, 0, 0.25));
     text-align: center;
@@ -38,9 +45,9 @@
     flex: 1 100%;
     color: white;
     padding: 0;
-    margin: 0rem;
+    margin: 1rem 2rem;
     font-weight: 400;
-  font-size: calc(1rem + 1vw);
+    font-size: calc(1rem + 1vw);
     text-align: justify;
   }
   
@@ -49,10 +56,12 @@
 
     .photo {
       flex: 1 40%;
+      margin: 2rem 1rem 2rem 2rem;
+      min-height: 50vh;
+      max-width: 35vw;
     }
     .mainText {
-      flex: 1 40%;
-      
+      flex: 1 40%;      
     }
         
   }
