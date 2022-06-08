@@ -151,10 +151,10 @@ export default function Contact() {
         </div>
         <div className={styles.body}>
           <p className={styles.mainText}>
-            Have questions or need a quote? Give us a call at 360-720-7606 or
-            contact us below to receive a prompt quote or anwer to any
-            questions. We look forward to helping you find the best solution for
-            your project.
+            Have questions or need a quote? Give us a call at{' '}
+            <strong>360-720-7606</strong> or contact us below to receive a
+            prompt response. We look forward to helping you find the best
+            solution for your project.
           </p>
           <div className={styles.formContainer}>
             {!success && (

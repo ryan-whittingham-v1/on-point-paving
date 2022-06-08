@@ -33,16 +33,16 @@ export default function Menu(props) {
       </div>
       <nav className={styles.optionsContainer}>
         <div className={styles.option}>
-          <button onClick={() => handleRedirect('/')}>HOME</button>
+          <button onClick={() => handleRedirect('/about')}>ABOUT US</button>
+        </div>
+        <div className={styles.option}>
+          <button onClick={() => handleRedirect('/contact')}>CONTACT US</button>
         </div>
         <div className={styles.option}>
           <button onClick={() => handleRedirect('/services')}>SERVICES</button>
         </div>
         <div className={styles.option}>
-          <button onClick={() => handleRedirect('/about')}>ABOUT US</button>
-        </div>
-        <div className={styles.option}>
-          <button onClick={() => handleRedirect('/contact')}>CONTACT US</button>
+          <button onClick={() => handleRedirect('/')}>HOME</button>
         </div>
       </nav>
     </div>
