@@ -1,10 +1,11 @@
 import styles from '../styles/Review.module.css';
 import Image from 'next/image';
 
-import photo from '../public/driveway.jpg';
 import star from '../public/star.png';
 
-export default function Review() {
+export default function Review(props) {
+  const author = `- ${props?.review?.fields?.customerName}`;
+  const photo = `https:${props?.review?.fields?.image?.fields?.file?.url}`;
   return (
     <div className={styles.mainContainer}>
       <div className={styles.photo}>
@@ -16,11 +17,7 @@ export default function Review() {
         />
       </div>
       <div className={styles.quote}>
-        <p>
-          “On Point Paving was prompt to respond and did a fantastic job on our
-          new driveway. It looks absolutely beautiful and the quality is top
-          notch!”
-        </p>
+        <p>{props?.review?.fields?.review}</p>
         <div className={styles.stars}>
           <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
           <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
@@ -29,7 +26,7 @@ export default function Review() {
           <Image alt="Star" src={star} layout="fixed" width={30} height={30} />
         </div>
         <div className={styles.author}>
-          <p>- Bethany W.</p>
+          <p>{author}</p>
         </div>
       </div>
     </div>

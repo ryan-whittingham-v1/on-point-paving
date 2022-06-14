@@ -1,4 +1,4 @@
-import { fetchAsset } from '../lib/contentful';
+import { fetchEntry, fetchReviews } from '../lib/contentful';
 
 import Head from 'next/head';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css';
 import Reviews from '../components/Reviews';
 
 export default function Home(props) {
-  const banner = `https:${props.homeBanner.fields.file.url}`;
+  const photo = `https:${props?.homePage.fields?.image?.fields.file.url}`;
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -19,7 +19,7 @@ export default function Home(props) {
         <div className={styles.mainPhoto}>
           <Image
             alt="Freshly paved road with beautiful landscaping"
-            src={banner}
+            src={photo}
             layout="fill"
             objectFit="cover"
             objectPosition="50% 42%"
@@ -27,28 +27,30 @@ export default function Home(props) {
           />
         </div>
         <div className={styles.tagline}>
-          <h2>SOUTHWEST WASHINGTON’S</h2>
-          <h1>ELITE PAVING SERVICE</h1>
+          <h2>{props?.homePage.fields.headingLine1}</h2>
+          <h1>{props?.homePage.fields.headingLine2}</h1>
         </div>
-        <p className={styles.mainText}>
-          On Point Paving is proud to offer high quality paving options for both
-          commerical and residential projects. Our trusted experience and
-          expertise will get the job done right at an affordable price. We are
-          committed to providing exceptional paving solutions that will stand
-          the test of time.
-        </p>
+        <p className={styles.mainText}>{props?.homePage.fields.textBody}</p>
       </main>
-      <Reviews />
+      <Reviews
+        header={props?.homePage.fields.reviewsHeader}
+        reviews={props?.reviews}
+      />
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const homeBanner = await fetchAsset('dYQ5GCQ6fMSwuNPEfppq4');
+  const homePage = await fetchEntry('39EhTHPUPTS9fqMLH9lIC7');
+  const reviewsRes = await fetchReviews();
+  const reviews = await reviewsRes.map((p) => {
+    return p;
+  });
 
   return {
     props: {
-      homeBanner,
+      homePage,
+      reviews,
     },
   };
 }

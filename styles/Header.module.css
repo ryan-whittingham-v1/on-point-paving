@@ -4,11 +4,9 @@
     justify-content: space-between;
     background: #000000;
     padding: 1rem 1rem .5rem 1rem;
-    margin: auto;
     position: sticky;
-    top: 0rem;
-z-index: 10;
-
+    top: 0;
+    z-index: 10;
 }
 
 .logoContainer{
@@ -27,7 +25,9 @@ z-index: 10;
     font-size: calc(1rem + 2vw);
     font-weight: bold;
     text-align: center;
-    margin-top: .5rem;
+    margin: .5rem 0rem 0rem 0rem;
+    padding: 0rem;
+    line-height: calc(1rem + 2vw);
 }
 
 
@@ -38,10 +38,13 @@ z-index: 10;
 }
 
 @media all and (orientation: landscape) {
+
+    .mainContainer{
+        padding: 1rem;
+    }
     
     .logoContainer{
         flex: 1 90%;
-        padding-bottom: .5rem;
     }
     .logo {
         flex: 1 50%;
@@ -49,8 +52,6 @@ z-index: 10;
     .phone {
         flex: 1 50%;
         margin: 0rem;
-        font-size: calc(.5rem + 2.5vw);
-        line-height: 90%;
 
     }
     .button{
