@@ -10,6 +10,8 @@ export default function Reviews(props) {
   const [reviewIndex, setReviewIndex] = useState(0);
   const [array, setArray] = useState(['']);
 
+  let buttonStyle;
+
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -20,10 +22,10 @@ export default function Reviews(props) {
     </CSSTransition>
   );
 
-  async function nextReview() {
-    setArray(['']);
+  async function nextReview(index) {
+    if (index !== reviewIndex) setArray(['']);
     await sleep(400);
-    setReviewIndex((reviewIndex + 1) % reviews.length);
+    setReviewIndex(index);
   }
 
   useEffect(() => {
@@ -38,13 +40,22 @@ export default function Reviews(props) {
         <div className={styles.rectangle}></div>
       </div>
       <div className={styles.carousel}>
+        <div className={styles.button}>
+          {reviews.map((review, index) => {
+            return (
+              <button
+                type="button"
+                onClick={() => nextReview(index)}
+                key={index}
+                className={
+                  index === reviewIndex ? styles.selected : styles.unselected
+                }
+              ></button>
+            );
+          })}
+        </div>
         <div className={styles.review}>
           <TransitionGroup>{array}</TransitionGroup>
-        </div>
-        <div className={styles.button}>
-          <button type="button" onClick={nextReview}>
-            Next
-          </button>
         </div>
       </div>
     </div>
