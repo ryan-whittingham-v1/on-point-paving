@@ -1,12 +1,10 @@
 import Head from 'next/head';
+import { fetchEntry, fetchServices } from '../lib/contentful';
+
 import Service from '../components/Service.js';
 import styles from '../styles/Services.module.css';
 
-import driveway from '../public/driveway.jpg';
-import parkingLot from '../public/parkingLot.jpg';
-import road from '../public/road.jpg';
-
-export default function Services() {
+export default function Services(props) {
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -16,35 +14,35 @@ export default function Services() {
       </Head>
       <main>
         <div className={styles.headingContainer}>
-          <h1>SERVICES</h1>
+          <h1>{props?.pageContent.fields.heading}</h1>
         </div>
-        <p className={styles.mainText}>
-          On Point Paving is proud to offer high quality paving options for both
-          commerical and residential projects. Our trusted experience and
-          expertise will get the job done right at an affordable price. We are
-          committed to providing exceptional paving solutions that will stand
-          the test of time.
-        </p>
-        <Service
-          serviceName={'DRIVEWAY'}
-          photo={driveway}
-          description={
-            'This section will cover the specifics for driveway paving.'
-          }
-        />
-        <Service
-          serviceName={'PARKING LOT'}
-          photo={parkingLot}
-          description={
-            'This section will cover the specifics for parking lot paving.'
-          }
-        />
-        <Service
-          serviceName={'ROAD'}
-          photo={road}
-          description={'This section will cover the specifics for road paving.'}
-        />
+        <p className={styles.mainText}>{props?.pageContent.fields.textBody}</p>
+        {props?.services.map((service, index) => {
+          return (
+            <Service
+              serviceName={service.fields.serviceName}
+              photo={`https:${service.fields?.image?.fields.file.url}`}
+              description={service.fields.description}
+              key={index}
+            />
+          );
+        })}
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const pageContent = await fetchEntry('1lrvROZ4p2Pd1KjCXiRExj');
+  const servicesRes = await fetchServices();
+  const services = await servicesRes.map((p) => {
+    return p;
+  });
+
+  return {
+    props: {
+      pageContent,
+      services,
+    },
+  };
 }

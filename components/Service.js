@@ -1,7 +1,5 @@
 import Image from 'next/image';
 
-import photo from '../public/driveway.jpg';
-
 import styles from '../styles/Service.module.css';
 
 export default function Service(props) {

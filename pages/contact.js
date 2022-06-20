@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
+import { fetchEntry } from '../lib/contentful';
 
 import Notification from '../components/Notification';
 
 import styles from '../styles/Contact.module.css';
 
-export default function Contact() {
+export default function Contact(props) {
   const [formState, setFormState] = useState({
     name: '',
     phone: '',
@@ -147,15 +148,10 @@ export default function Contact() {
       </Head>
       <main>
         <div className={styles.headingContainer}>
-          <h1>CONTACT US</h1>
+          <h1>{props.pageContent.fields.heading}</h1>
         </div>
         <div className={styles.body}>
-          <p className={styles.mainText}>
-            Have questions or need a quote? Give us a call at{' '}
-            <strong>360-720-7606</strong> or contact us below to receive a
-            prompt response. We look forward to helping you find the best
-            solution for your project.
-          </p>
+          <p className={styles.mainText}>{props.pageContent.fields.textBody}</p>
           <div className={styles.formContainer}>
             {!success && (
               <form onSubmit={handleSubmit}>
@@ -255,4 +251,13 @@ export default function Contact() {
       </main>
     </div>
   );
+}
+export async function getStaticProps() {
+  const pageContent = await fetchEntry('793cxbipqdb5ClRFBNkjpt');
+
+  return {
+    props: {
+      pageContent,
+    },
+  };
 }

@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import styles from '../styles/About.module.css';
 import Image from 'next/image';
+import { fetchEntry } from '../lib/contentful';
 
-import photo from '../public/driveway.jpg';
-
-export default function About() {
+export default function About(props) {
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -14,26 +13,29 @@ export default function About() {
       </Head>
       <main>
         <div className={styles.headingContainer}>
-          <h1>ABOUT US</h1>
+          <h1>{props.pageContent.fields.heading}</h1>
         </div>
         <div className={styles.body}>
           <div className={styles.photo}>
             <Image
               alt="Freshly paved road with beautiful landscaping"
-              src={photo}
+              src={`https:${props.pageContent.fields?.image?.fields.file.url}`}
               layout="fill"
               objectFit="cover"
             />
           </div>
-          <p className={styles.mainText}>
-            On Point Paving is proud to offer high quality paving options for
-            both commerical and residential projects. Our trusted experience and
-            expertise will get the job done right at an affordable price. We are
-            committed to providing exceptional paving solutions that will stand
-            the test of time.
-          </p>
+          <p className={styles.mainText}>{props.pageContent.fields.textBody}</p>
         </div>
       </main>
     </div>
   );
+}
+export async function getStaticProps() {
+  const pageContent = await fetchEntry('LTkXgdOxZMrSOcQkmxkoH');
+
+  return {
+    props: {
+      pageContent,
+    },
+  };
 }
