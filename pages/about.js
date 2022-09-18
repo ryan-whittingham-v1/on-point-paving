@@ -22,6 +22,7 @@ export default function About(props) {
               src={`https:${props.pageContent.fields?.image?.fields.file.url}`}
               layout="fill"
               objectFit="cover"
+              objectPosition="50% 25%"
             />
           </div>
           <p className={styles.mainText}>{props.pageContent.fields.textBody}</p>
