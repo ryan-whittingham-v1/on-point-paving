@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     min-height: 84vh;
+    align-items: center;
   }
   
   .headingContainer{
@@ -38,7 +39,7 @@
     margin: 0rem 2rem;
     font-weight: 400;
     font-size: calc(1rem + 1vw);
-    text-align: justify;
+    max-width: 50rem;
   }
 
   .formContainer{
@@ -176,7 +177,7 @@
     }
     .formContainer {
       flex: 1 32%;
-      align-items: flex-start;
+      
     }
         
   }
