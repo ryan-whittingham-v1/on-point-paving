@@ -7,11 +7,11 @@ export default function Menu(props) {
 
   const defaultStyle = {
     transition: `transform ${props.duration}ms ease-in-out`,
-    transform: 'translateX(-101%)',
+    transform: 'translateX(-101vw)',
   };
 
   const transitionStyles = {
-    entering: { transform: 'translateX(-101%)' },
+    entering: { transform: 'translateX(-101vw)' },
     entered: { transform: 'translateX(0)' },
   };
 

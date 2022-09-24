@@ -3,7 +3,6 @@
     flex-flow: row wrap;
     margin: 0rem;
     justify-content: center;
-    min-height: 60vh;
 }
 
 .photo{
@@ -13,7 +12,6 @@
   position: relative;
   min-height: 12rem;
   }
-
 
   .quote {
     flex: 1 100%;
@@ -34,7 +32,7 @@
   .quote p {
         color: white;
       text-align: center;
-      font-size: calc(1rem + 2vw);
+      font-size: 1.5rem;
       padding: 0rem;
       margin: 0rem 2rem .5rem 2rem;
       font-style: italic;
@@ -74,12 +72,11 @@
     
     .quote p {
     text-align: left;
-    font-size: calc(1rem + 1vw);
     
   }
 
   
   .author p {
-    font-size: calc(1rem + 1vw);
+    font-size: 1.5rem;
 }
   }

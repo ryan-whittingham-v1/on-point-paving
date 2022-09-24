@@ -1,12 +1,12 @@
 .mainContainer {
-    position: fixed;
+    position: absolute;
     top: 0rem;
     left: 0rem;
     z-index: 100;
     background: black;
     color: white;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }

@@ -8,7 +8,7 @@ import styles from '../styles/MenuButton.module.css';
 
 export default function MenuButton() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const duration = 200;
+  const duration = 300;
 
   useEffect(() => {
     if (menuOpen) {

@@ -33,11 +33,6 @@
     justify-content: center;
 }
 
-.review {
-    flex: 1 100%;
-    margin: auto;
-}
-
 .button {
     flex: 1 100%;
     margin: auto;
