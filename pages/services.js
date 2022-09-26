@@ -21,7 +21,7 @@ export default function Services(props) {
           return (
             <Service
               serviceName={service.fields.serviceName}
-              photo={`https:${service.fields?.image?.fields.file.url}`}
+              images={service.fields?.images}
               description={service.fields.description}
               key={index}
             />

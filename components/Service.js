@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 import styles from '../styles/Service.module.css';
+import ImageViewer from './ImageViewer';
 
 export default function Service(props) {
+  console.log(props);
   return (
     <div className={styles.mainContainer}>
       <div className={styles.headingContainer}>
@@ -13,12 +15,7 @@ export default function Service(props) {
       </div>
       <div className={styles.bodyContainer}>
         <div className={styles.imageContainer}>
-          <Image
-            alt="Asphalt driveway"
-            src={props.photo}
-            layout="fill"
-            objectFit="cover"
-          />
+          <ImageViewer images={props.images} />
         </div>
         <div className={styles.textContainer}>
           <p>{props.description}</p>

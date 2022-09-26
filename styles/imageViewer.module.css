@@ -1,9 +1,10 @@
 .mainContainer {
-    width: 50vw;
+  flex: 1 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+   overflow: hidden;
   }
   
   .navigationContainer {
@@ -11,20 +12,19 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    column-gap: 1rem;
+    column-gap: 2rem;
   }
   
   .navigationContainer button {
-    margin-top: 1rem;
     background: none;
     border: none;
     border-radius: 0.3rem;
-    padding: 0.25rem 1rem;
     font: inherit;
     cursor: pointer;
     outline: inherit;
     font-size: 2rem;
     font-weight: 800;
+    color: white;
   }
   
   .navigationContainer button:active {
@@ -33,7 +33,9 @@
   }
   
   .slideInFromLeft {
-    transform: translateX(-95vw);
+    width: 100%;
+    height: 100%;
+    transform: translateX(-125%);
     animation-duration: 1s;
     animation-name: slideInFromLeft;
     animation-delay: 0s;
@@ -41,6 +43,8 @@
   }
   
   .slideOutToRight {
+    width: 100%;
+    height: 100%;
     animation-duration: 1s;
     animation-name: slideOutToRight;
     animation-delay: 0s;
@@ -48,7 +52,9 @@
   }
   
   .slideInFromRight {
-    transform: translateX(95vw);
+    width: 100%;
+    height: 100%;
+    transform: translateX(125%);
     animation-duration: 1s;
     animation-name: slideInFromRight;
     animation-delay: 0s;
@@ -56,6 +62,8 @@
   }
   
   .slideOutToLeft {
+    width: 100%;
+    height: 100%;
     animation-duration: 1s;
     animation-name: slideOutToLeft;
     animation-delay: 0s;
@@ -64,7 +72,7 @@
   
   @keyframes slideInFromLeft {
     from {
-      transform: translateX(-100vw);
+      transform: translateX(-125%);
     }
   
     to {
@@ -78,13 +86,13 @@
     }
   
     to {
-      transform: translateX(100vw);
+      transform: translateX(125%);
     }
   }
   
   @keyframes slideInFromRight {
     from {
-      transform: translateX(100vw);
+      transform: translateX(125%);
     }
   
     to {
@@ -98,7 +106,7 @@
     }
   
     to {
-      transform: translateX(-100vw);
+      transform: translateX(-125%);
     }
   }
   

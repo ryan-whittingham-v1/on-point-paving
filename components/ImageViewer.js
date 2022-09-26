@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import styles from '../styles/imageViewer.module.css';
-import Image from './Image.js';
+import ImageCC from './ImageCC.js';
 
 export default function ImageViewer(props) {
   const displayTime = 5000;
   const delayChangeTime = 500;
-  const hideTime = 500;
-  const forwardIcon = '>';
-  const backwardIcon = '<';
+  const hideTime = 550;
+  const forwardIcon = '>>';
+  const backwardIcon = '<<';
 
   const [pause, setPause] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
@@ -21,8 +21,8 @@ export default function ImageViewer(props) {
       }, delayChangeTime);
     });
     await promise;
-    setImageIndex((imageIndex + 1) % props?.images.length);
-  }, [imageIndex, props.images.length]);
+    setImageIndex((imageIndex + 1) % props?.images?.length);
+  }, [imageIndex, props?.images?.length]);
 
   const decreaseImageIndex = useCallback(async () => {
     let promise = new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ export default function ImageViewer(props) {
     });
     await promise;
     setImageIndex(imageIndex === 0 ? props?.images.length - 1 : imageIndex - 1);
-  }, [imageIndex, props.images.length]);
+  }, [imageIndex, props?.images?.length]);
 
   const handleNextClick = useCallback(() => {
     increaseImageIndex();
@@ -97,20 +97,38 @@ export default function ImageViewer(props) {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={imageAnimate}>
-        <Image
-          src={props.images[imageIndex]}
+      {/* SINGLE IMAGE */}
+      {props.images.length == 1 && (
+        <ImageCC
+          src={`https:${props?.images[imageIndex].fields?.file?.url}`}
           alt={imageIndex}
           handleZoom={handleZoom}
           zoom={zoom}
           closeZoom={closeZoom}
         />
-      </div>
-      <div className={styles.navigationContainer}>
-        <button onClick={handlePrevClick}>{backwardIcon}</button>
-        {/*<button onClick={handlePause}>{pause ? "Play" : "Pause"}</button>*/}
-        <button onClick={handleNextClick}>{forwardIcon}</button>
-      </div>
+      )}
+
+      {/* MULTIPLE IMAGES */}
+      {props.images.length > 1 && (
+        <>
+          <div className={imageAnimate}>
+            {props.images && (
+              <ImageCC
+                src={`https:${props?.images[imageIndex].fields?.file?.url}`}
+                alt={imageIndex}
+                handleZoom={handleZoom}
+                zoom={zoom}
+                closeZoom={closeZoom}
+              />
+            )}
+          </div>
+          <div className={styles.navigationContainer}>
+            <button onClick={handlePrevClick}>{backwardIcon}</button>
+            {/*<button onClick={handlePause}>{pause ? "Play" : "Pause"}</button>*/}
+            <button onClick={handleNextClick}>{forwardIcon}</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

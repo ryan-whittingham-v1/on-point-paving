@@ -14,6 +14,7 @@ export default function Review(props) {
           src={photo}
           layout="fill"
           objectFit="cover"
+          priority
         />
       </div>
       <div className={styles.quote}>

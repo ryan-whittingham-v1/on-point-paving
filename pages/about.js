@@ -23,6 +23,7 @@ export default function About(props) {
               layout="fill"
               objectFit="cover"
               objectPosition="50% 25%"
+              priority
             />
           </div>
           <p className={styles.mainText}>{props.pageContent.fields.textBody}</p>
