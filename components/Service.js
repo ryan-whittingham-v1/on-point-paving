@@ -4,7 +4,6 @@ import styles from '../styles/Service.module.css';
 import ImageViewer from './ImageViewer';
 
 export default function Service(props) {
-  console.log(props);
   return (
     <div className={styles.mainContainer}>
       <div className={styles.headingContainer}>

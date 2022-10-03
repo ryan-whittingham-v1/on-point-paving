@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
+import Modal from './Modal.js';
 import styles from '../styles/imageViewer.module.css';
-import ImageCC from './ImageCC.js';
 
 export default function ImageViewer(props) {
   const displayTime = 5000;
@@ -13,6 +14,18 @@ export default function ImageViewer(props) {
   const [imageIndex, setImageIndex] = useState(0);
   const [zoom, setZoom] = useState(false);
   const [imageAnimate, setImageAnimate] = useState(styles.slideInFromLeft);
+
+  const arrayOfImgElements = props?.images?.map((image, index) => {
+    return (
+      <Image
+        key={index}
+        src={`https:${props?.images[imageIndex].fields?.file?.url}`}
+        alt={props?.images[imageIndex].fields?.file?.description}
+        layout="fill"
+        objectFit="cover"
+      />
+    );
+  });
 
   const increaseImageIndex = useCallback(async () => {
     let promise = new Promise((resolve, reject) => {
@@ -78,57 +91,60 @@ export default function ImageViewer(props) {
     return () => clearInterval(interval);
   }, [pause, imageIndex, handleNextClick]);
 
-  function handlePause() {
-    setPause(!pause);
-  }
-
   function handleZoom() {
-    setZoom(!zoom);
-    if (!pause) {
+    if (!zoom) {
+      setZoom(true);
       setPause(true);
+    } else if (zoom) {
+      setZoom(false);
+      setPause(false);
+      handleNextClick();
     }
   }
 
-  function closeZoom() {
-    setZoom(false);
-    setPause(false);
-    handleNextClick();
-  }
-
   return (
-    <div className={styles.mainContainer}>
-      {/* SINGLE IMAGE */}
-      {props.images.length == 1 && (
-        <ImageCC
-          src={`https:${props?.images[imageIndex].fields?.file?.url}`}
-          alt={imageIndex}
-          handleZoom={handleZoom}
-          zoom={zoom}
-          closeZoom={closeZoom}
+    <>
+      {zoom && (
+        <Modal
+          toggle={handleZoom}
+          image={
+            <Image
+              src={`https:${props?.images[imageIndex].fields?.file?.url}`}
+              alt={props?.images[imageIndex].fields?.file?.description}
+              layout="fill"
+              objectFit="contain"
+            />
+          }
         />
       )}
+      <div className={styles.mainContainer}>
+        {/* SINGLE IMAGE */}
+        {props.images.length == 1 && (
+          <Image
+            src={`https:${props?.images[imageIndex].fields?.file?.url}`}
+            handleZoom={handleZoom}
+            alt={props?.images[imageIndex].fields?.file?.description}
+            layout="fill"
+            objectFit="cover"
+            onClick={handleZoom}
+          />
+        )}
 
-      {/* MULTIPLE IMAGES */}
-      {props.images.length > 1 && (
-        <>
-          <div className={imageAnimate}>
-            {props.images && (
-              <ImageCC
-                src={`https:${props?.images[imageIndex].fields?.file?.url}`}
-                alt={imageIndex}
-                handleZoom={handleZoom}
-                zoom={zoom}
-                closeZoom={closeZoom}
-              />
-            )}
-          </div>
-          <div className={styles.navigationContainer}>
-            <button onClick={handlePrevClick}>{backwardIcon}</button>
-            {/*<button onClick={handlePause}>{pause ? "Play" : "Pause"}</button>*/}
-            <button onClick={handleNextClick}>{forwardIcon}</button>
-          </div>
-        </>
-      )}
-    </div>
+        {/* MULTIPLE IMAGES */}
+        {props.images.length > 1 && (
+          <>
+            <div className={styles.imagesContainer}>
+              <div className={imageAnimate} onClick={handleZoom}>
+                {arrayOfImgElements[imageIndex]}
+              </div>
+            </div>
+            <div className={styles.navigationContainer}>
+              <button onClick={handlePrevClick}>{backwardIcon}</button>
+              <button onClick={handleNextClick}>{forwardIcon}</button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

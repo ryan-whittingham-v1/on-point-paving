@@ -34,6 +34,7 @@
     flex: 1 100%;
     margin-bottom: 1rem;
     display: flex;
+    height: 18rem;
 }
 
 .textContainer {
