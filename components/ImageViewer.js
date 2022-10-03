@@ -23,6 +23,7 @@ export default function ImageViewer(props) {
         alt={props?.images[imageIndex].fields?.file?.description}
         layout="fill"
         objectFit="cover"
+        priority
       />
     );
   });
@@ -113,6 +114,7 @@ export default function ImageViewer(props) {
               alt={props?.images[imageIndex].fields?.file?.description}
               layout="fill"
               objectFit="contain"
+              priority
             />
           }
         />
@@ -127,6 +129,7 @@ export default function ImageViewer(props) {
             layout="fill"
             objectFit="cover"
             onClick={handleZoom}
+            priority
           />
         )}
 
