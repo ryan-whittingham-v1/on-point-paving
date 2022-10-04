@@ -120,33 +120,15 @@ export default function ImageViewer(props) {
         />
       )}
       <div className={styles.mainContainer}>
-        {/* SINGLE IMAGE */}
-        {props.images.length == 1 && (
-          <Image
-            src={`https:${props?.images[imageIndex].fields?.file?.url}`}
-            handleZoom={handleZoom}
-            alt={props?.images[imageIndex].fields?.file?.description}
-            layout="fill"
-            objectFit="cover"
-            onClick={handleZoom}
-            priority
-          />
-        )}
-
-        {/* MULTIPLE IMAGES */}
-        {props.images.length > 1 && (
-          <>
-            <div className={styles.imagesContainer}>
-              <div className={imageAnimate} onClick={handleZoom}>
-                {arrayOfImgElements[imageIndex]}
-              </div>
-            </div>
-            <div className={styles.navigationContainer}>
-              <button onClick={handlePrevClick}>{backwardIcon}</button>
-              <button onClick={handleNextClick}>{forwardIcon}</button>
-            </div>
-          </>
-        )}
+        <div className={styles.imagesContainer}>
+          <div className={imageAnimate} onClick={handleZoom}>
+            {arrayOfImgElements[imageIndex]}
+          </div>
+        </div>
+        <div className={styles.navigationContainer}>
+          <button onClick={handlePrevClick}>{backwardIcon}</button>
+          <button onClick={handleNextClick}>{forwardIcon}</button>
+        </div>
       </div>
     </>
   );

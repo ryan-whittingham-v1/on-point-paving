@@ -14,7 +14,17 @@ export default function Service(props) {
       </div>
       <div className={styles.bodyContainer}>
         <div className={styles.imageContainer}>
-          <ImageViewer images={props.images} />
+          {props.images.length > 1 ? (
+            <ImageViewer images={props.images} />
+          ) : (
+            <Image
+              src={`https:${props?.images[0].fields?.file?.url}`}
+              alt={props?.images[0].fields?.description}
+              layout="fill"
+              objectFit="contain"
+              priority
+            />
+          )}
         </div>
         <div className={styles.textContainer}>
           <p>{props.description}</p>
