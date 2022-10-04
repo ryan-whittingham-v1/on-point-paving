@@ -1,6 +1,5 @@
 .mainContainer{
     width: 100%;
-    flex: 1 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -9,10 +8,11 @@
     position: sticky;
     top: 0;
     z-index: 10;
+    box-sizing: border-box;
 }
 
 .logoContainer{
-    flex: 1 80%;
+    flex: 1 70%;
     display: flex;
     flex-flow: row wrap;
 }
@@ -33,10 +33,29 @@
 }
 
 
-.button{
-    flex: 1 20%;
+.buttonContainer{
+    flex: 1 10%;
     display:flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-end;
+}
+
+.buttonContainer button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.rectangle {
+    width: 2.5rem;  
+    background: var(--main-bg-color);;
+    height: .4rem;
+    margin: 0rem 0rem .4rem 0rem;
 }
 
 @media all and (orientation: landscape) {
@@ -46,7 +65,7 @@
     }
     
     .logoContainer{
-        flex: 1 90%;
+        flex: 1 60%;
     }
     .logo {
         flex: 1 50%;
@@ -55,8 +74,5 @@
         flex: 1 50%;
         margin: 0rem;
 
-    }
-    .button{
-        flex: 1 10%;
     }
   }

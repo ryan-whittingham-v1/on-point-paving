@@ -5,13 +5,12 @@ import star from '../public/star.png';
 
 export default function Review(props) {
   const author = `- ${props?.review?.fields?.customerName}`;
-  const photo = `https:${props?.review?.fields?.image?.fields?.file?.url}`;
   return (
     <div className={styles.mainContainer}>
       <div className={styles.photo}>
         <Image
-          alt="Freshly paved road with beautiful landscaping"
-          src={photo}
+          alt={`https:${props?.review?.fields?.image?.fields?.description}`}
+          src={`https:${props?.review?.fields?.image?.fields?.file?.url}`}
           layout="fill"
           objectFit="cover"
           priority

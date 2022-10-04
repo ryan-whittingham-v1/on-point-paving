@@ -28,6 +28,7 @@
     display: flex;
     flex-flow: row wrap;
     margin: 1.5rem 2rem 1rem;
+    column-gap: .5rem;
 }
 
 .imageContainer {
@@ -62,11 +63,12 @@
     }
 
     .imageContainer {
-        flex: 1 40%;
+        flex: 1 35%;
     }
      
     .textContainer {
-        flex: 1 55%;
+        flex: 1 50%;
         padding: 0rem 1rem;
+        box-sizing: border-box;
     }
 }

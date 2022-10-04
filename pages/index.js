@@ -7,7 +7,6 @@ import styles from '../styles/Home.module.css';
 import Reviews from '../components/Reviews';
 
 export default function Home(props) {
-  const photo = `https:${props?.homePage.fields?.image?.fields.file.url}`;
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -18,8 +17,8 @@ export default function Home(props) {
       <main>
         <div className={styles.mainPhoto}>
           <Image
-            alt="Freshly paved road with beautiful landscaping"
-            src={photo}
+            alt={`https:${props?.homePage.fields?.image?.fields.description}`}
+            src={`https:${props?.homePage.fields?.image?.fields.file.url}`}
             layout="fill"
             objectFit="cover"
             objectPosition="50% 42%"

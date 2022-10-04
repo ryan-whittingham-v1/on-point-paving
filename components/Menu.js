@@ -5,31 +5,15 @@ import styles from '../styles/Menu.module.css';
 export default function Menu(props) {
   const router = useRouter();
 
-  const defaultStyle = {
-    transition: `transform ${props.duration}ms ease-in-out`,
-    transform: 'translateX(-101vw)',
-  };
-
-  const transitionStyles = {
-    entering: { transform: 'translateX(-101vw)' },
-    entered: { transform: 'translateX(0)' },
-  };
-
   function handleRedirect(page) {
     router.push(page);
-    props.closeMenu();
+    props.close();
   }
 
   return (
-    <div
-      className={styles.mainContainer}
-      style={{
-        ...defaultStyle,
-        ...transitionStyles[props.state],
-      }}
-    >
+    <div className={styles.mainContainer}>
       <div className={styles.closeMenu}>
-        <button onClick={() => props.closeMenu()}>x</button>
+        <button onClick={() => props.close()}>x</button>
       </div>
       <nav className={styles.optionsContainer}>
         <div className={styles.option}>

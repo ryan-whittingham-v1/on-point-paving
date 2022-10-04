@@ -1,10 +1,12 @@
 .mainContainer {
+  width: 100%;
   display: flex;
-  flex: 1;
+  flex-direction: column;
   color: white;
   background: black;
-  justify-content: center;
   align-items: center;
   margin-top: 1rem;
   height: 3rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }

@@ -20,7 +20,7 @@ export default function ImageViewer(props) {
       <Image
         key={index}
         src={`https:${props?.images[imageIndex].fields?.file?.url}`}
-        alt={props?.images[imageIndex].fields?.file?.description}
+        alt={props?.images[imageIndex].fields?.description}
         layout="fill"
         objectFit="cover"
         priority
@@ -111,7 +111,7 @@ export default function ImageViewer(props) {
           image={
             <Image
               src={`https:${props?.images[imageIndex].fields?.file?.url}`}
-              alt={props?.images[imageIndex].fields?.file?.description}
+              alt={props?.images[imageIndex].fields?.description}
               layout="fill"
               objectFit="contain"
               priority

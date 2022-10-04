@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styles from '../styles/Reviews.module.css';
 import Review from './Review';
 
@@ -16,11 +15,7 @@ export default function Reviews(props) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  let review = (
-    <CSSTransition timeout={duration} classNames={{ ...styles }}>
-      <Review review={reviews[reviewIndex]} />
-    </CSSTransition>
-  );
+  let review = <Review review={reviews[reviewIndex]} />;
 
   async function nextReview(index) {
     if (index !== reviewIndex) setArray(['']);
@@ -40,23 +35,7 @@ export default function Reviews(props) {
         <div className={styles.rectangle}></div>
       </div>
       <div className={styles.carousel}>
-        <div className={styles.button}>
-          {reviews.map((review, index) => {
-            return (
-              <button
-                type="button"
-                onClick={() => nextReview(index)}
-                key={index}
-                className={
-                  index === reviewIndex ? styles.selected : styles.unselected
-                }
-              ></button>
-            );
-          })}
-        </div>
-        <div className={styles.review}>
-          <TransitionGroup>{array}</TransitionGroup>
-        </div>
+        <div className={styles.review}>{review}</div>
       </div>
     </div>
   );

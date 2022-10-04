@@ -10,7 +10,9 @@
   box-shadow: .5rem .5rem 1rem 0rem rgb(37, 37, 37);
   margin: 0rem 4rem 1rem 4rem;
   position: relative;
-  min-height: 12rem;
+  max-width: 20rem;
+  min-height: 8rem;
+  max-height: 12rem;
   }
 
   .quote {
@@ -62,8 +64,6 @@
     .photo {
       flex: 1 40%;
       margin: 0rem;
-      max-height: 30vh;
-      max-width: 25vw;
     }
 
     .quote {
