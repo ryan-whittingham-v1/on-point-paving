@@ -126,8 +126,12 @@ export default function ImageViewer(props) {
           </div>
         </div>
         <div className={styles.navigationContainer}>
-          <button onClick={handlePrevClick}>{backwardIcon}</button>
-          <button onClick={handleNextClick}>{forwardIcon}</button>
+          <button type="button" onClick={handlePrevClick}>
+            {backwardIcon}
+          </button>
+          <button type="button" onClick={handleNextClick}>
+            {forwardIcon}
+          </button>
         </div>
       </div>
     </>
