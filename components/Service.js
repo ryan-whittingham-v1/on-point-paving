@@ -22,6 +22,7 @@ export default function Service(props) {
               alt={props?.images[0].fields?.description}
               layout="fill"
               objectFit="contain"
+              priority
             />
           )}
         </div>
