@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  border: solid white 0.25rem;
 }
 
 .imagesContainer {
@@ -15,7 +14,6 @@
   max-height: 100%;
   overflow: hidden;
   justify-content: center;
-  background: white;
 }
 
 .navigationContainer {
@@ -23,7 +21,6 @@
   flex-direction: row;
   justify-content: center;
   column-gap: 1rem;
-  background: white;
 }
 
 .navigationContainer button {
@@ -36,11 +33,11 @@
   outline: inherit;
   font-size: 2rem;
   font-weight: 800;
-  color: black;
+  color: white;
 }
 
 .navigationContainer button:active {
-  color:  var(--main-bg-color);
+  color:  black;
   transform: translate(0.1rem, 0.1rem);
 }
 

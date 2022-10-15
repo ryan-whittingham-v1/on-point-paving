@@ -10,15 +10,19 @@ export default function Home(props) {
   return (
     <div className={styles.mainContainer}>
       <Head>
-        <title>On Point Paving</title>
-        <meta name="description" content="On Point Paving Web Site" />
+        <title>On Point Paving - Vancouver, WA - Portland, OR</title>
+        <meta
+          name="description"
+          content="Professional paving service for Vancouver, Washington and the Portland metro area."
+          key="desc"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <div className={styles.mainPhoto}>
           <Image
             alt={`https:${props?.homePage.fields?.image?.fields.description}`}
-            src={`https:${props?.homePage.fields?.image?.fields.file.url}`}
+            src={`https:${props?.homePage.fields?.image?.fields.file.url}?w=1000&h=1000`}
             layout="fill"
             objectFit="cover"
             objectPosition="50% 42%"
@@ -26,8 +30,11 @@ export default function Home(props) {
           />
         </div>
         <div className={styles.tagline}>
-          <h2>{props?.homePage.fields.headingLine1}</h2>
-          <h1>{props?.homePage.fields.headingLine2}</h1>
+          <h1>
+            {props?.homePage.fields.headingLine1}
+            <br />
+            {props?.homePage.fields.headingLine2}
+          </h1>
         </div>
         <p className={styles.mainText}>{props?.homePage.fields.textBody}</p>
       </main>

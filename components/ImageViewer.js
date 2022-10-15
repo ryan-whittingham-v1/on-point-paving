@@ -110,7 +110,7 @@ export default function ImageViewer(props) {
           toggle={handleZoom}
           image={
             <Image
-              src={`https:${props?.images[imageIndex].fields?.file?.url}`}
+              src={`https:${props?.images[imageIndex].fields?.file?.url}?w=800&h=800`}
               alt={props?.images[imageIndex].fields?.description}
               layout="fill"
               objectFit="contain"

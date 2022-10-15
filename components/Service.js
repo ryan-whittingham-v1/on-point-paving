@@ -18,11 +18,10 @@ export default function Service(props) {
             <ImageViewer images={props.images} />
           ) : (
             <Image
-              src={`https:${props?.images[0].fields?.file?.url}`}
+              src={`https:${props?.images[0].fields?.file?.url}?w=800&h=800`}
               alt={props?.images[0].fields?.description}
               layout="fill"
               objectFit="contain"
-              priority
             />
           )}
         </div>

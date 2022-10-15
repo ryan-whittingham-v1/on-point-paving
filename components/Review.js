@@ -10,10 +10,9 @@ export default function Review(props) {
       <div className={styles.photo}>
         <Image
           alt={`https:${props?.review?.fields?.image?.fields?.description}`}
-          src={`https:${props?.review?.fields?.image?.fields?.file?.url}`}
+          src={`https:${props?.review?.fields?.image?.fields?.file?.url}?w=800&h=800`}
           layout="fill"
           objectFit="cover"
-          priority
         />
       </div>
       <div className={styles.quote}>

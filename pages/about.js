@@ -19,7 +19,7 @@ export default function About(props) {
           <div className={styles.photo}>
             <Image
               alt={`https:${props.pageContent.fields?.image?.fields.description}`}
-              src={`https:${props.pageContent.fields?.image?.fields.file.url}`}
+              src={`https:${props.pageContent.fields?.image?.fields.file.url}?w=800&h=800`}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 25%"

@@ -76,3 +76,45 @@
 
     }
   }
+
+  .slideMenuIn {
+  flex: 1 100%;
+  transform: translateX(-105%);
+  animation-duration: 1s;
+  animation-name: slideInFromLeft;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  position: fixed;
+  z-index: 100;
+}
+
+.slideMenuOut {
+  flex: 1 100%;
+  animation-duration: 1s;
+  animation-name: slideOutToLeft;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  position: fixed;
+  z-index: 100;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-105%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-105%);
+  }
+}
